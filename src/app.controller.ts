@@ -1,13 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import { ApiExcludeEndpoint } from '@nestjs/swagger';
+import { AppService } from './app.service';
 
-@Controller('api')
+@Controller()
 export class AppController {
-	constructor() {}
+  constructor(private readonly appService: AppService) {}
 
-	@ApiExcludeEndpoint()
-	@Get()
-	index() {
-		return 'Welcome to Testus api!';
-	}
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
 }
