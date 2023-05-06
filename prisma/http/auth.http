@@ -1,0 +1,19 @@
+POST http://localhost:3000/api/auth/signin
+Content-Type: application/json
+
+{
+ "email": "admin@testus.com",
+ "password":"P0klik4$"
+}
+
+###
+
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+
+{
+	"email": "admin4@testus.com",
+	"password":"P0klik4$"
+}
+
+###

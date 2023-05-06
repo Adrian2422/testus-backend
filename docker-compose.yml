@@ -38,3 +38,5 @@ services:
 volumes:
   postgres:
     name: nest-db
+  pgadmin:
+    name: nest-db
