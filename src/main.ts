@@ -2,6 +2,7 @@ import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import helmet from 'helmet';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
@@ -21,15 +22,16 @@ async function bootstrap() {
 		credentials: true
 	});
 
+	app.use(helmet());
+
 	const config = new DocumentBuilder()
 		.setTitle('Testus API')
 		.setDescription('Testus API dev decumentation')
 		.setExternalDoc('API JSON', `http://localhost:${port}/api-json`)
 		.setVersion('1.0')
 		.build();
-	const document = SwaggerModule
-		.createDocument(app, config);
-	SwaggerModule.setup('api/doc', app, document);
+	const document = SwaggerModule.createDocument(app, config);
+	SwaggerModule.setup('api', app, document);
 
 	await app.listen(port);
 }
